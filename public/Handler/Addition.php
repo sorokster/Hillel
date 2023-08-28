@@ -4,7 +4,7 @@ namespace Hillel\Project\Handler;
 
 use Hillel\Project\Request;
 
-class Addition extends Calculator
+class Addition implements ICalculator
 {
     /**
      * @param Request $request

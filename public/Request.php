@@ -2,13 +2,13 @@
 
 namespace Hillel\Project;
 
-use Hillel\Project\Enum\Operator;
+use Hillel\Project\Handler\ICalculator;
 
 class Request
 {
     private int|float $operand1;
     private int|float $operand2;
-    private Operator $operator;
+    private ICalculator $handler;
 
     /** @return int|float */
     public function getOperand1(): int|float
@@ -40,18 +40,18 @@ class Request
         $this->operand2 = $operand2;
     }
 
-    /** @return Operator */
-    public function getOperator(): Operator
+    /** @return ICalculator */
+    public function getHandler(): ICalculator
     {
-        return $this->operator;
+        return $this->handler;
     }
 
     /**
-     * @param Operator $operator
+     * @param ICalculator $handler
      * @return void
      */
-    public function setOperator(Operator $operator): void
+    public function setHandler(ICalculator $handler): void
     {
-        $this->operator = $operator;
+        $this->handler = $handler;
     }
 }

@@ -5,7 +5,7 @@ namespace Hillel\Project\Handler;
 use Hillel\Project\Request;
 use InvalidArgumentException;
 
-class Division extends Calculator
+class Division implements ICalculator
 {
     /**
      * @param Request $request

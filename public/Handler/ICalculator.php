@@ -4,11 +4,11 @@ namespace Hillel\Project\Handler;
 
 use Hillel\Project\Request;
 
-abstract class Calculator
+interface ICalculator
 {
     /**
      * @param Request $request
      * @return int|float
      */
-    abstract public function calculate(Request $request): int|float;
+    public function calculate(Request $request): int|float;
 }
