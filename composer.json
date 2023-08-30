@@ -1,7 +1,12 @@
 {
+  "require": {
+    "php": "^8.0",
+    "symfony/console": "^5.4",
+    "ext-curl": "*"
+  },
   "autoload": {
     "psr-4": {
-      "Hillel\\Project\\": "public/"
+      "Hillel\\Project\\": "src/"
     }
   }
 }
