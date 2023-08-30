@@ -6,14 +6,13 @@ use InvalidArgumentException;
 
 class UrlValidator implements IUrlValidator
 {
-    public function __construct(public string $url)
+    /**
+     * @param string $url
+     * @return bool
+     */
+    public function validate(string $url): bool
     {
-    }
-
-    /** @return bool */
-    public function validate(): bool
-    {
-        if (filter_var($this->url, FILTER_VALIDATE_URL) === false) {
+        if (filter_var($url, FILTER_VALIDATE_URL) === false) {
             throw new InvalidArgumentException('String is not a url.');
         }
 

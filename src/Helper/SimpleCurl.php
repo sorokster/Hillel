@@ -55,8 +55,8 @@ class SimpleCurl
     /** @return bool */
     protected function validateUrl(): bool
     {
-        $urlValidator = new UrlValidator($this->url);
-        return $urlValidator->validate();
+        $urlValidator = new UrlValidator();
+        return $urlValidator->validate($this->url);
     }
 }
 

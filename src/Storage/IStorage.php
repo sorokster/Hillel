@@ -4,7 +4,7 @@ namespace Hillel\Project\Storage;
 
 use Hillel\Project\DTO\UrlCodeDTO;
 
-interface Storage
+interface IStorage
 {
     /**
      * @param string $code

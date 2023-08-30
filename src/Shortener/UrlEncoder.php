@@ -3,7 +3,7 @@
 namespace Hillel\Project\Shortener;
 
 use Hillel\Project\Helper\SimpleCurl;
-use Hillel\Project\Storage\Storage;
+use Hillel\Project\Storage\IStorage;
 use InvalidArgumentException;
 
 class UrlEncoder implements IUrlEncoder
@@ -11,14 +11,14 @@ class UrlEncoder implements IUrlEncoder
     private string $salt = 'encode';
     protected int $maxLength = 10;
 
-    public function __construct(public Storage $storage)
+    public function __construct(public IStorage $storage)
     {
     }
 
     /**
      * @param string $url
-     * @throws InvalidArgumentException
      * @return string
+     * @throws InvalidArgumentException
      */
     public function encode(string $url): string
     {

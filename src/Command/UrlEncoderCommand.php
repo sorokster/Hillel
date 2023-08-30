@@ -3,7 +3,7 @@
 namespace Hillel\Project\Command;
 
 use Hillel\Project\Shortener\UrlEncoder;
-use Hillel\Project\Storage\FileStorage;
+use Hillel\Project\Storage\FileIStorage;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -43,7 +43,7 @@ class UrlEncoderCommand extends Command
         $io = new SymfonyStyle($input, $output);
 
         try {
-            $urlEncoder = new UrlEncoder(new FileStorage());
+            $urlEncoder = new UrlEncoder(new FileIStorage());
             $code = $urlEncoder->encode($input->getArgument(self::ARGUMENT_NAME_URL));
 
             $io->writeln(sprintf('Website: %s', $input->getArgument(self::ARGUMENT_NAME_URL)));

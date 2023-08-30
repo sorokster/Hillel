@@ -1,2 +1,0 @@
-O:29:"Hillel\Project\DTO\UrlCodeDTO":2:{s:3:"url";s:26:"https://www.similarweb.com";s:4:"code";s:10:"c39b8a34a6";}
-O:29:"Hillel\Project\DTO\UrlCodeDTO":2:{s:3:"url";s:22:"https://www.google.com";s:4:"code";s:10:"9f2ef3b642";}

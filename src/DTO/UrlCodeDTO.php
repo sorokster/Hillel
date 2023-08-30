@@ -4,5 +4,7 @@ namespace Hillel\Project\DTO;
 
 class UrlCodeDTO
 {
-    public function __construct(public string $url, public string $code) {}
+    public function __construct(public string $url, public string $code)
+    {
+    }
 }

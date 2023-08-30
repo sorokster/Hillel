@@ -4,5 +4,5 @@ namespace Hillel\Project\Validator;
 
 interface IUrlValidator
 {
-    public function validate(): bool;
+    public function validate(string $url): bool;
 }

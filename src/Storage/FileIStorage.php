@@ -4,7 +4,7 @@ namespace Hillel\Project\Storage;
 
 use Hillel\Project\DTO\UrlCodeDTO;
 
-class FileStorage implements Storage
+class FileIStorage implements IStorage
 {
     public const DEFAULT_FILEPATH = 'data/codes.txt';
 

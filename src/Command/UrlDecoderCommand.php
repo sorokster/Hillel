@@ -3,7 +3,7 @@
 namespace Hillel\Project\Command;
 
 use Hillel\Project\Shortener\UrlDecoder;
-use Hillel\Project\Storage\FileStorage;
+use Hillel\Project\Storage\FileIStorage;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -43,7 +43,7 @@ class UrlDecoderCommand extends Command
         $io = new SymfonyStyle($input, $output);
 
         try {
-            $urlDecoder = new UrlDecoder(new FileStorage());
+            $urlDecoder = new UrlDecoder(new FileIStorage());
             $url = $urlDecoder->decode($input->getArgument(self::ARGUMENT_NAME_CODE));
 
             $io->writeln(sprintf('Code: %s', $input->getArgument(self::ARGUMENT_NAME_CODE)));
