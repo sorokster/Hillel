@@ -46,7 +46,6 @@ class UrlEncoderCommand extends Command
             $urlEncoder = new UrlEncoder(new FileIStorage());
             $code = $urlEncoder->encode($input->getArgument(self::ARGUMENT_NAME_URL));
 
-            $io->writeln(sprintf('Website: %s', $input->getArgument(self::ARGUMENT_NAME_URL)));
             $io->writeln(sprintf('Code: %s', $code));
             return Command::SUCCESS;
         } catch (Exception $e) {

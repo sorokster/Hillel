@@ -46,7 +46,6 @@ class UrlDecoderCommand extends Command
             $urlDecoder = new UrlDecoder(new FileIStorage());
             $url = $urlDecoder->decode($input->getArgument(self::ARGUMENT_NAME_CODE));
 
-            $io->writeln(sprintf('Code: %s', $input->getArgument(self::ARGUMENT_NAME_CODE)));
             $io->writeln(sprintf('Website: %s', $url));
             return Command::SUCCESS;
         } catch (Exception $e) {
