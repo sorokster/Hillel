@@ -6,7 +6,7 @@ use Hillel\Project\Helper\SimpleCurl;
 use Hillel\Project\Storage\IStorage;
 use InvalidArgumentException;
 
-class UrlEncoder implements IUrlEncoder
+class UrlShortener implements IUrlEncoder, IUrlDecoder
 {
     private string $salt = 'encode';
     protected int $maxLength = 10;
@@ -33,6 +33,20 @@ class UrlEncoder implements IUrlEncoder
         }
 
         return $code;
+    }
+
+    /**
+     * @param string $code
+     * @return string
+     * @throws InvalidArgumentException
+     */
+    public function decode(string $code): string
+    {
+        if (empty($record = $this->storage->getRecord($code))) {
+            throw new InvalidArgumentException('Url is not found');
+        }
+
+        return $record->url;
     }
 
     /**

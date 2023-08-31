@@ -2,7 +2,7 @@
 
 namespace Hillel\Project\Storage;
 
-use Hillel\Project\DTO\UrlCodeDTO;
+use Hillel\Project\ValueObject\UrlCodeValueObject;
 
 interface IStorage
 {
@@ -15,7 +15,7 @@ interface IStorage
 
     /**
      * @param string $code
-     * @return UrlCodeDTO|null
+     * @return UrlCodeValueObject|null
      */
-    public function getRecord(string $code): ?UrlCodeDTO;
+    public function getRecord(string $code): ?UrlCodeValueObject;
 }

@@ -2,7 +2,7 @@
 
 namespace Hillel\Project\Command;
 
-use Hillel\Project\Shortener\UrlDecoder;
+use Hillel\Project\Shortener\UrlShortener;
 use Hillel\Project\Storage\FileIStorage;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -43,14 +43,14 @@ class UrlDecoderCommand extends Command
         $io = new SymfonyStyle($input, $output);
 
         try {
-            $urlDecoder = new UrlDecoder(new FileIStorage());
+            $urlDecoder = new UrlShortener(new FileIStorage());
             $url = $urlDecoder->decode($input->getArgument(self::ARGUMENT_NAME_CODE));
 
             $io->writeln(sprintf('Website: %s', $url));
             return Command::SUCCESS;
         } catch (Exception $e) {
             $io->writeln($e->getMessage());
-            $io->writeln('UrlDecoder cannot start');
+            $io->writeln('UrlShortener cannot start');
             return Command::FAILURE;
         }
     }

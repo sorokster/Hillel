@@ -2,7 +2,7 @@
 
 namespace Hillel\Project\Storage;
 
-use Hillel\Project\DTO\UrlCodeDTO;
+use Hillel\Project\ValueObject\UrlCodeValueObject;
 
 class FileIStorage implements IStorage
 {
@@ -21,15 +21,15 @@ class FileIStorage implements IStorage
      */
     public function addRecord(string $code, string $url): void
     {
-        $data = serialize(new UrlCodeDTO($url, $code));
+        $data = serialize(new UrlCodeValueObject($url, $code));
         file_put_contents($this->filename, $data . PHP_EOL, FILE_APPEND);
     }
 
     /**
      * @param string $code
-     * @return UrlCodeDTO|null
+     * @return UrlCodeValueObject|null
      */
-    public function getRecord(string $code): ?UrlCodeDTO
+    public function getRecord(string $code): ?UrlCodeValueObject
     {
         $data = explode(PHP_EOL, file_get_contents($this->filename));
         foreach ($data as $row) {
@@ -37,10 +37,10 @@ class FileIStorage implements IStorage
                 continue;
             }
 
-            /** @var UrlCodeDTO $item */
+            /** @var UrlCodeValueObject $item */
             $item = unserialize($row);
 
-            if (!$item instanceof UrlCodeDTO) {
+            if (!$item instanceof UrlCodeValueObject) {
                 continue;
             }
 
