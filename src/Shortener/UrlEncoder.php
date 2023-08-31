@@ -17,8 +17,8 @@ class UrlEncoder implements IUrlEncoder
 
     /**
      * @param string $url
-     * @return string
      * @throws InvalidArgumentException
+     * @return string
      */
     public function encode(string $url): string
     {
@@ -26,8 +26,7 @@ class UrlEncoder implements IUrlEncoder
             throw new InvalidArgumentException('Website is not exist');
         }
 
-        $fullCode = substr(hash_hmac('sha256', $url, $this->salt), $this->maxLength);
-        $code = substr($fullCode, 0, 10);
+        $code = substr(hash_hmac('sha256', $url, $this->salt), 0, $this->maxLength);
 
         if (empty($this->storage->getRecord($code))) {
             $this->storage->addRecord($code, $url);
