@@ -29,7 +29,11 @@ class SimpleCurl
         return (string)curl_exec($this->curl);
     }
 
-    public function getInfo(int $option)
+    /**
+     * @param int $option
+     * @return mixed
+     */
+    public function getInfo(int $option): mixed
     {
         return curl_getinfo($this->curl, $option);
     }
