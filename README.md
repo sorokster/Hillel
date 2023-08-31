@@ -1,9 +1,8 @@
 # Pre-install
+- Install composer dependencies `composer i`
 
-1. Install composer dependencies `composer i`
+# Use encode command
+- Run command from root `php bin/console.php url:encode https://www.google.com`
 
-# Use UrlEncoder
-1. Run command from root `php bin/console.php url:encode https://www.google.com`
-
-# Use UrlDecoder
-1. Run command from root `php bin/console.php url:decode 8e2db34986`
+# Use decode command
+- Run command from root `php bin/console.php url:decode 8e2db34986`

@@ -4,14 +4,19 @@ namespace Hillel\Project\Storage;
 
 use Hillel\Project\ValueObject\UrlCodeValueObject;
 
-class FileIStorage implements IStorage
+class FileStorage implements IStorage
 {
-    public const DEFAULT_FILEPATH = 'data/codes.txt';
+    public const DEFAULT_DIRECTORY = 'data';
+    public const DEFAULT_FILEPATH = 'codes.txt';
+
+    protected string $filepath;
 
     public function __construct(
+        public string $directory = self::DEFAULT_DIRECTORY,
         public string $filename = self::DEFAULT_FILEPATH
     )
     {
+        $this->filepath = sprintf('%s/%s', $this->directory, $this->filename);
     }
 
     /**
@@ -22,7 +27,12 @@ class FileIStorage implements IStorage
     public function addRecord(string $code, string $url): void
     {
         $data = serialize(new UrlCodeValueObject($url, $code));
-        file_put_contents($this->filename, $data . PHP_EOL, FILE_APPEND);
+
+        file_put_contents(
+            $this->filepath,
+            $data . PHP_EOL,
+            file_exists($this->filepath) ? FILE_APPEND : FILE_USE_INCLUDE_PATH
+        );
     }
 
     /**
@@ -31,7 +41,11 @@ class FileIStorage implements IStorage
      */
     public function getRecord(string $code): ?UrlCodeValueObject
     {
-        $data = explode(PHP_EOL, file_get_contents($this->filename));
+        if (!file_exists($this->filepath)) {
+            return null;
+        }
+
+        $data = explode(PHP_EOL, file_get_contents($this->filepath) ?? '');
         foreach ($data as $row) {
             if ($row === '') {
                 continue;
