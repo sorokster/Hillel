@@ -3,13 +3,13 @@
 namespace Hillel\Project\Helper;
 
 use CurlHandle;
-use Hillel\Project\Validator\UrlValidator;
+use Hillel\Project\Validator\IUrlValidator;
 
 class SimpleCurl
 {
     protected false|CurlHandle $curl;
 
-    public function __construct(public string $url)
+    public function __construct(public string $url, protected IUrlValidator $urlValidator)
     {
         if ($this->validateUrl()) {
             $this->init();
@@ -59,8 +59,7 @@ class SimpleCurl
     /** @return bool */
     protected function validateUrl(): bool
     {
-        $urlValidator = new UrlValidator();
-        return $urlValidator->validate($this->url);
+        return $this->urlValidator->validate($this->url);
     }
 }
 

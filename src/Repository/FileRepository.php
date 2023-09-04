@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Hillel\Project\Storage;
+namespace Hillel\Project\Repository;
 
 use Hillel\Project\ValueObject\UrlCodeValueObject;
 
-class FileStorage implements IStorage
+class FileRepository implements IRepository
 {
     public const DEFAULT_DIRECTORY = 'data';
     public const DEFAULT_FILEPATH = 'codes.txt';
@@ -58,7 +58,7 @@ class FileStorage implements IStorage
                 continue;
             }
 
-            if ($item->code === $code) {
+            if ($item->getCode() === $code) {
                 return $item;
             }
         }

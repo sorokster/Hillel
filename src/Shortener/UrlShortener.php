@@ -3,7 +3,8 @@
 namespace Hillel\Project\Shortener;
 
 use Hillel\Project\Helper\SimpleCurl;
-use Hillel\Project\Storage\IStorage;
+use Hillel\Project\Repository\IRepository;
+use Hillel\Project\Validator\UrlValidator;
 use InvalidArgumentException;
 
 class UrlShortener implements IUrlEncoder, IUrlDecoder
@@ -11,7 +12,7 @@ class UrlShortener implements IUrlEncoder, IUrlDecoder
     private string $salt = 'encode';
     protected int $maxLength = 10;
 
-    public function __construct(public IStorage $storage)
+    public function __construct(public IRepository $storage)
     {
     }
 
@@ -46,7 +47,7 @@ class UrlShortener implements IUrlEncoder, IUrlDecoder
             throw new InvalidArgumentException('Url is not found');
         }
 
-        return $record->url;
+        return $record->getUrl();
     }
 
     /**
@@ -55,7 +56,7 @@ class UrlShortener implements IUrlEncoder, IUrlDecoder
      */
     protected function validateUrl(string $url): bool
     {
-        $curl = new SimpleCurl($url);
+        $curl = new SimpleCurl($url, new UrlValidator());
         $curl
             ->setOption(CURLOPT_RETURNTRANSFER, 1)
             ->setOption(CURLOPT_FOLLOWLOCATION, 1);

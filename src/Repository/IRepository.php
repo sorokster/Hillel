@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Hillel\Project\Storage;
+namespace Hillel\Project\Repository;
 
 use Hillel\Project\ValueObject\UrlCodeValueObject;
 
-interface IStorage
+interface IRepository
 {
     /**
      * @param string $code
