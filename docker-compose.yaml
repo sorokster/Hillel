@@ -17,3 +17,19 @@ services:
       - ./:${WORKDIR}
       - ./logs/nginx:/var/log/nginx
 
+  db:
+    image: mysql/mysql-server:8.0.23
+    container_name: db
+    environment:
+      MYSQL_HOST: db
+      MYSQL_DATABASE: hillel
+      MYSQL_USER: hillel
+      MYSQL_PASSWORD: hillel!23
+      MYSQL_ROOT_PASSWORD: hillel!23
+    volumes:
+      - db-hillel:/var/lib/mysql
+    ports:
+      - "33060:3306"
+
+volumes:
+  db-hillel:

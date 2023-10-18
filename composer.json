@@ -2,6 +2,7 @@
   "require": {
     "php": "^8.0",
     "symfony/console": "^5.4",
+    "illuminate/database": "^8.8",
     "ext-curl": "*"
   },
   "autoload": {

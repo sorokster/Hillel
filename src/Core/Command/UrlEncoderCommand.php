@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Hillel\Project\Command;
+namespace Hillel\Project\Core\Command;
 
-use Hillel\Project\Shortener\UrlShortener;
 use Hillel\Project\Repository\FileRepository;
+use Hillel\Project\Shortener\UrlShortener;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -12,22 +12,22 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use Exception;
 
 /**
- * Class UrlDecoderCommand
+ * Class UrlEncoderCommand
  * @package Hillel\Project\Command
  */
-class UrlDecoderCommand extends Command
+class UrlEncoderCommand extends Command
 {
-    protected static $defaultName = 'url:decode';
-    protected static $defaultDescription = 'Decode url';
-    protected const ARGUMENT_NAME_CODE = 'code';
+    protected static $defaultName = 'url:encode';
+    protected static $defaultDescription = 'Encode url';
+    protected const ARGUMENT_NAME_URL = 'url';
 
     /** @return void */
     protected function configure(): void
     {
         $this->addArgument(
-            self::ARGUMENT_NAME_CODE,
+            self::ARGUMENT_NAME_URL,
             InputArgument::REQUIRED,
-            'Type code...'
+            'Type url...'
         );
     }
 
@@ -43,10 +43,10 @@ class UrlDecoderCommand extends Command
         $io = new SymfonyStyle($input, $output);
 
         try {
-            $urlDecoder = new UrlShortener(new FileRepository());
-            $url = $urlDecoder->decode($input->getArgument(self::ARGUMENT_NAME_CODE));
+            $urlEncoder = new UrlShortener(new FileRepository());
+            $code = $urlEncoder->encode($input->getArgument(self::ARGUMENT_NAME_URL));
 
-            $io->writeln(sprintf('Website: %s', $url));
+            $io->writeln(sprintf('Code: %s', $code));
             return Command::SUCCESS;
         } catch (Exception $e) {
             $io->writeln($e->getMessage());
