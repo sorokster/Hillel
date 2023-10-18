@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Hillel\Project\Repository;
+namespace Hillel\Project\Shortener\Interfaces;
 
-use Hillel\Project\ValueObject\UrlCodeValueObject;
+use Hillel\Project\Shortener\ValueObjects\UrlCodeValueObject;
 
 interface IRepository
 {

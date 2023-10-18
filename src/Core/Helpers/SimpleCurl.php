@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Hillel\Project\Helper;
+namespace Hillel\Project\Core\Helpers;
 
 use CurlHandle;
-use Hillel\Project\Validator\IUrlValidator;
+use Hillel\Project\Shortener\Interfaces\IUrlValidator;
 
 class SimpleCurl
 {

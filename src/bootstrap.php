@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 use Hillel\Project\Core\DI\Container;
-use Hillel\Project\Repository\FileRepository;
+use Hillel\Project\Shortener\Repositories\FileRepository;
 use Hillel\Project\Shortener\UrlShortener;
 
 require 'vendor/autoload.php';

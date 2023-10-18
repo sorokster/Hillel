@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Hillel\Project\ValueObject;
+namespace Hillel\Project\Shortener\ValueObjects;
 
 class UrlCodeValueObject
 {

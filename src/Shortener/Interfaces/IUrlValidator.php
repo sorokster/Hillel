@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Hillel\Project\Validator;
+namespace Hillel\Project\Shortener\Interfaces;
 
 interface IUrlValidator
 {

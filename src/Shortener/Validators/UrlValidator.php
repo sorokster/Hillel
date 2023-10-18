@@ -1,7 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Hillel\Project\Validator;
+namespace Hillel\Project\Shortener\Validators;
 
+use Hillel\Project\Shortener\Interfaces\IUrlValidator;
 use InvalidArgumentException;
 
 class UrlValidator implements IUrlValidator

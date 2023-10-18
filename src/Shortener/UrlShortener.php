@@ -2,9 +2,11 @@
 
 namespace Hillel\Project\Shortener;
 
-use Hillel\Project\Helper\SimpleCurl;
-use Hillel\Project\Repository\IRepository;
-use Hillel\Project\Validator\UrlValidator;
+use Hillel\Project\Core\Helpers\SimpleCurl;
+use Hillel\Project\Shortener\Interfaces\IRepository;
+use Hillel\Project\Shortener\Interfaces\IUrlDecoder;
+use Hillel\Project\Shortener\Interfaces\IUrlEncoder;
+use Hillel\Project\Shortener\Validators\UrlValidator;
 use InvalidArgumentException;
 
 class UrlShortener implements IUrlEncoder, IUrlDecoder

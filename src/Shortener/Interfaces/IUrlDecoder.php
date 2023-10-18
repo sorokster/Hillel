@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Hillel\Project\Shortener;
+namespace Hillel\Project\Shortener\Interfaces;
 
 use InvalidArgumentException;
 

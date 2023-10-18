@@ -1,8 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Hillel\Project\Repository;
+namespace Hillel\Project\Shortener\Repositories;
 
-use Hillel\Project\ValueObject\UrlCodeValueObject;
+use Hillel\Project\Shortener\Interfaces\IRepository;
+use Hillel\Project\Shortener\ValueObjects\UrlCodeValueObject;
 
 class FileRepository implements IRepository
 {
