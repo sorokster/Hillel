@@ -14,38 +14,6 @@ class Code extends Model
     protected int $urlId;
     protected string $code;
 
-    /**
-     * @return int
-     */
-    public function getUrlId(): int
-    {
-        return $this->urlId;
-    }
-
-    /**
-     * @param int $urlId
-     */
-    public function setUrlId(int $urlId): void
-    {
-        $this->urlId = $urlId;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCode(): string
-    {
-        return $this->code;
-    }
-
-    /**
-     * @param string $code
-     */
-    public function setCode(string $code): void
-    {
-        $this->code = $code;
-    }
-
     /** @return BelongsTo */
     public function url(): BelongsTo
     {
