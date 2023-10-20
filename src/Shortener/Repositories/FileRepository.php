@@ -12,6 +12,10 @@ class FileRepository implements IRepository
 
     protected string $filepath;
 
+    /**
+     * @param string $directory
+     * @param string $filename
+     */
     public function __construct(
         public string $directory = self::DEFAULT_DIRECTORY,
         public string $filename = self::DEFAULT_FILEPATH

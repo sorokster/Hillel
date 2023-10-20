@@ -7,12 +7,14 @@ services:
       dockerfile: docker/configs/php/Dockerfile
       args:
         WORKDIR: ${WORKDIR}
-#    extra_hosts:
-#      - "host.docker.internal:host-gateway"
     environment:
       WORKDIR: ${WORKDIR}
       XDEBUG_CONFIG: remote_host=127.0.0.1
       PHP_IDE_CONFIG: serverName=docker
+      MYSQL_HOST: ${MYSQL_HOST}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - ./:${WORKDIR}
       - ./logs/nginx:/var/log/nginx
@@ -21,11 +23,11 @@ services:
     image: mysql/mysql-server:8.0.23
     container_name: db
     environment:
-      MYSQL_HOST: db
-      MYSQL_DATABASE: hillel
-      MYSQL_USER: hillel
-      MYSQL_PASSWORD: hillel!23
-      MYSQL_ROOT_PASSWORD: hillel!23
+      MYSQL_HOST: ${DB_HOST}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
     volumes:
       - db-hillel:/var/lib/mysql
     ports:

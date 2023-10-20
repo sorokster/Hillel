@@ -68,18 +68,18 @@ class Container implements ContainerInterface
      */
     private function resolve(string $id): mixed
     {
-        if (isset($this->services[$name = $id])) {
-            if ($this->services[$name] instanceof Closure) {
-                return $this->services[$name]($this);
+        if (isset($this->services[$id])) {
+            if ($this->services[$id] instanceof Closure) {
+                return $this->services[$id]($this);
             }
 
-            if (is_callable($this->services[$name])) {
-                return $name();
+            if (is_callable($this->services[$id])) {
+                return $id();
             }
         }
 
         try {
-            return (new ReflectionClass($name));
+            return (new ReflectionClass($id));
         } catch (ReflectionException $e) {
             throw new NotFoundException($e->getMessage(), $e->getCode(), $e);
         }
