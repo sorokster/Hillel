@@ -11,12 +11,52 @@ class Code extends Model
     public $timestamps = false;
     protected $fillable = ['url_id', 'code'];
 
+    protected int $urlId;
+    protected string $code;
+
+    /**
+     * @return int
+     */
+    public function getUrlId(): int
+    {
+        return $this->urlId;
+    }
+
+    /**
+     * @param int $urlId
+     */
+    public function setUrlId(int $urlId): void
+    {
+        $this->urlId = $urlId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCode(): string
+    {
+        return $this->code;
+    }
+
+    /**
+     * @param string $code
+     */
+    public function setCode(string $code): void
+    {
+        $this->code = $code;
+    }
+
     /** @return BelongsTo */
     public function url(): BelongsTo
     {
         return $this->belongsTo(Url::class);
     }
 
+    /**
+     * @param int $urlId
+     * @param string $code
+     * @return Code
+     */
     public static function fromState(int $urlId, string $code): Code
     {
         return new Code([

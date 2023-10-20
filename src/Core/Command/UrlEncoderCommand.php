@@ -2,7 +2,7 @@
 
 namespace Hillel\Project\Core\Command;
 
-use Hillel\Project\Repository\FileRepository;
+use Hillel\Project\Shortener\Repositories\FileRepository;
 use Hillel\Project\Shortener\UrlShortener;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;

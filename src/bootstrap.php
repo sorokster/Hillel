@@ -22,12 +22,12 @@ $container
     })
     ->add(ActiveRecordRepository::class, ActiveRecordRepository::class)
     ->add(FileRepository::class, FileRepository::class)
-    ->add(UrlShortener::class, function () use ($container): UrlShortener {
+    ->add(UrlShortener::class . ActiveRecordRepository::class, function () use ($container): UrlShortener {
         return new UrlShortener($container->get(ActiveRecordRepository::class));
+    })
+    ->add(UrlShortener::class . FileRepository::class, function () use ($container): UrlShortener {
+        return new UrlShortener($container->get(FileRepository::class));
     });
-//    ->add(UrlShortener::class, function () use ($container): UrlShortener {
-//        return new UrlShortener($container->get(FileRepository::class));
-//    });
 
 
 return $container;

@@ -2,6 +2,7 @@
 
 use Hillel\Project\Core\DI\Container;
 use Hillel\Project\Core\Exceptions\NotFoundException;
+use Hillel\Project\Shortener\Repositories\FileRepository;
 use Hillel\Project\Shortener\UrlShortener;
 use Illuminate\Database\Capsule\Manager;
 
@@ -12,7 +13,7 @@ try {
     $container->get(Manager::class);
 
     /** @var UrlShortener $shortener */
-    $shortener = $container->get(UrlShortener::class);
+    $shortener = $container->get(UrlShortener::class . FileRepository::class);
     $shortener->encode('https://www.google.com');
 } catch (NotFoundException|ReflectionException $e) {
     var_dump($e->getMessage());

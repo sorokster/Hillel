@@ -2,8 +2,8 @@
 
 namespace Hillel\Project\Core\Command;
 
+use Hillel\Project\Shortener\Repositories\FileRepository;
 use Hillel\Project\Shortener\UrlShortener;
-use Hillel\Project\Repository\FileRepository;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -17,7 +17,7 @@ use Exception;
  */
 class UrlDecoderCommand extends Command
 {
-    protected static $defaultName = 'url:decode';
+    protected static $defaultName = 'url:decode:storage:file';
     protected static $defaultDescription = 'Decode url';
     protected const ARGUMENT_NAME_CODE = 'code';
 
