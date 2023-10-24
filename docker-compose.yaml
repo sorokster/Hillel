@@ -2,8 +2,6 @@ version: "3"
 services:
   php:
     container_name: php_${PROJECT_NAME}
-    networks:
-      - backend
     build:
       context: ./
       dockerfile: docker/configs/php/Dockerfile
@@ -11,6 +9,11 @@ services:
         WORKDIR: ${WORKDIR}
     environment:
       WORKDIR: ${WORKDIR}
+      MYSQL_HOST: ${MYSQL_HOST}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PORT: ${MYSQL_PORT}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       XDEBUG_CONFIG: remote_host=127.0.0.1
       PHP_IDE_CONFIG: serverName=docker
     volumes:
@@ -22,24 +25,22 @@ services:
   db:
     image: mysql:latest
     container_name: db_${PROJECT_NAME}
-    networks:
-      - backend
     environment:
+      WORKDIR: ${WORKDIR}
       MYSQL_HOST: ${MYSQL_HOST}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PORT: ${MYSQL_PORT}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     volumes:
-      - db-hillel:/var/lib/mysql
+      - db-hillel:/docker-entrypoint-initdb.d
     ports:
-      - ${MYSQL_DATABASE_PORT}:3306
+      - ${MYSQL_PORT}:3306
 
   nginx:
     image: nginx:latest
     container_name: nginx_${PROJECT_NAME}
-    networks:
-      - backend
     volumes:
       - ./:${WORKDIR}
       - ./docker/configs/nginx:/etc/nginx/conf.d
@@ -49,11 +50,6 @@ services:
       - ${HTTPS_PORT}:443
     links:
       - php
-
-networks:
-  backend:
-    name: hillel
-    driver: bridge
 
 volumes:
   db-hillel:

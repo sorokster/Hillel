@@ -7,7 +7,7 @@ use Illuminate\Database\Capsule\Manager;
 class DatabaseConnection
 {
     const DRIVER = 'mysql';
-    const HOST = 'db';
+    const HOST = 'host.docker.internal';
     const PREFIX = '';
     const CHARSET = 'utf8';
     const COLLATION = 'utf8_unicode_ci';

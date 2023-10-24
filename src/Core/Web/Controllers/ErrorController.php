@@ -4,9 +4,14 @@ namespace Hillel\Project\Core\Web\Controllers;
 
 class ErrorController
 {
-    /** @return void */
-    public function error(): void
+    protected const DEFAULT_MESSAGE = 'Page is not found';
+
+    /**
+     * @param string $message
+     * @return void
+     */
+    public function error(string $message): void
     {
-        echo 'Page is not found';
+        echo $message ?? self::DEFAULT_MESSAGE;
     }
 }

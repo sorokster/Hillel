@@ -6,7 +6,8 @@
     "symfony/console": "^6.0",
     "illuminate/database": "v9.*",
     "ext-curl": "*",
-    "ext-pdo": "*"
+    "ext-pdo": "*",
+    "doctrine/dbal": "^3.7"
   },
   "license": "MIT",
   "autoload": {

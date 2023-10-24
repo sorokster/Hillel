@@ -15,11 +15,10 @@ $container = new Container();
 $container
     ->add(Manager::class, function () use ($container): ActiveRecordConnection {
         return new ActiveRecordConnection(
-            'hillel',
-            'hillel',
-            'hillel!23',
-            '33060',
-            '127.0.0.1'
+            getenv('MYSQL_DATABASE'),
+            getenv('MYSQL_USER'),
+            getenv('MYSQL_PASSWORD'),
+            getenv('MYSQL_PORT'),
         );
     })
     ->add(ActiveRecordRepository::class, ActiveRecordRepository::class)

@@ -23,20 +23,32 @@ try {
 
     $handler = $routes[$route];
     $className = array_key_first($handler);
+    $action = array_key_first($handler[$className]);
+    $methodArguments = $handler[$className][$action];
     $controller = $container->get($className);
-    $action = $handler[$className];
 
     $queryString = $_SERVER['QUERY_STRING'] ?? '';
-    if (empty($queryString)) {
+    if (empty($queryString) && count($methodArguments) === 0) {
         call_user_func([$controller, $action]);
     } else {
-        $queryParams = explode('=', $queryString);
-        $data = call_user_func_array([$controller, $action], [$queryParams[1]]);
+        $parameters = [];
+        parse_str($queryString, $parameters);
+
+        if (count($parameters) !== count($methodArguments)) {
+            throw new InvalidArgumentException('Wrong number of arguments');
+        }
+
+        if (0 !== count(array_diff($methodArguments, array_keys($parameters)))) {
+            throw new InvalidArgumentException('Not found needed GET parameters');
+        }
+
+        $data = call_user_func_array([$controller, $action], $parameters);
+        var_dump($data);
     }
-} catch (NotFoundException|ReflectionException $e) {
+} catch (NotFoundException|ReflectionException|InvalidArgumentException $e) {
     var_dump($e->getMessage());
 } catch (Throwable $e) {
     /** @var ErrorController $errorController */
     $errorController = $container->get(ErrorController::class);
-    $errorController->error();
+    $errorController->error($e->getMessage());
 }
